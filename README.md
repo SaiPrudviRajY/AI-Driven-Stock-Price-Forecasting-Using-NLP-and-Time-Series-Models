@@ -8,7 +8,7 @@ The analysis focuses on 10 stocks: Apple (AAPL), Microsoft (MSFT), NVIDIA (NVDA)
 The first step of any data science project is to collect the data. We gathered data from multiple sources, including Polygon, GNews, Newsdata, and Nasdaq, for both historical stock data and news data. The data spans from **2021-01-01 to 2024-08-30**, ensuring a robust timeline for analysis.
 
 ### Stock Data
-Historical stock data was collected using the Polygon API. The data is at a **minute-level granularity**, providing high-resolution insights into market movements. In addition to basic historical data, we also obtained technical indicators to enrich the dataset. These indicators, such as Simple Moving Averages (SMA), Exponential Moving Averages (EMA), Relative Strength Index (RSI), and Moving Average Convergence Divergence (MACD), provide deeper insights into market trends and stock performance. The numerical values in the technical indicators, such as SMA_5 or RSI_7, represent their respective window sizes (e.g., 5-minute or 7-minute averages). Below are the columns that we fetched using the API:
+Historical stock data was collected using the Polygon API. The data is at a **minute-level granularity**, providing high-resolution insights into market movements. In addition to basic historical data, we also obtained technical indicators to enrich the dataset. These indicators, such as Simple Moving Averages (SMA), Exponential Moving Averages (EMA), Relative Strength Index (RSI), and Moving Average Convergence Divergence (MACD), provide deeper insights into market trends and stock performance. The numerical values in the technical indicators, such as SMA_5 or RSI_7, represent their respective window sizes (e.g., 5-day or 7-day averages). Below are the columns that we fetched using the API:
 
 - `Stock Symbol`
 - `Company Name`
@@ -70,7 +70,7 @@ Once the data collection was complete, the next step was to analyze the sentimen
 After collecting the data, we moved on to data cleaning and exploratory data analysis to prepare it for modeling. Here are the steps we followed:
 
 1. **Trading Hours Filter**:  
-   - We filtered the data to include only the time period from **9:30 AM to 4:00 PM**, as these are the standard trading hours for the stock market. This ensured that our analysis focused only on active trading periods.
+   - We filtered the data to include only the time period from **9:30 AM to 4:00 PM**, as these are the standard trading hours for the stock market. This ensured that our analysis focused only on active trading periods. After filtering the dataset we left with 3.8 million records.
 
 2. **Null Values Handling**:  
    - Checked the dataset for any null values and removed or imputed them as necessary.
@@ -79,7 +79,7 @@ After collecting the data, we moved on to data cleaning and exploratory data ana
    - We dropped the `Company Name` and `Number of Transactions` columns, as they were not relevant to our analysis or modeling.
 
 4. **Combining Historical Data with News Sentiment**:  
-   - The minute-level historical stock data (5.4 million records) was combined with the sentiment data from 50,000 news articles.  
+   - The minute-level historical stock data (3.8 million records) was combined with the sentiment data from 50,000 news articles.  
    - **Logic for Combining**:  
      For each minute, the sentiment of the most recent news article was applied until a new article was published. This ensured that every minute had an associated sentiment value, even if there was no new article for that time period.
 
